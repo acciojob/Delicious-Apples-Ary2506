@@ -146,12 +146,26 @@
     </div><!-- /.product -->
 
     <script>
-        /* ── Select color variant → swap main image + bg colour ── */
+        /* ── Select color variant → swap main image + bg + all album thumbs ── */
         function selectVariant(li) {
             document.querySelectorAll('.variant li').forEach(el => el.classList.remove('active'));
             li.classList.add('active');
-            document.getElementById('mainImage').src = li.dataset.src;
-            document.querySelector('.photo-main').style.backgroundColor = li.dataset.bg;
+
+            const src = li.dataset.src;
+            const bg  = li.dataset.bg;
+
+            // Update main image
+            document.getElementById('mainImage').src = src;
+
+            // Update background colour
+            document.querySelector('.photo-main').style.backgroundColor = bg;
+
+            // Update ALL album thumbnails to the selected apple
+            document.querySelectorAll('.photo-album li').forEach((albumLi, i) => {
+                albumLi.querySelector('img').src = src;
+                // Keep first thumbnail as "active" after switching
+                albumLi.classList.toggle('active', i === 0);
+            });
         }
 
         /* ── Select thumbnail → swap main image ── */
