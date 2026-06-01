@@ -209,8 +209,8 @@ body {
     letter-spacing: -2px;
 }
 
-/* Shared h3 label */
-h3 {
+/* Shared heading labels */
+h2, h3 {
     font-size: 0.7rem;
     color: #a0a0a0;
     text-transform: uppercase;
